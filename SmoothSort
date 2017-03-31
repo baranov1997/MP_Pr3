@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Random;
+import java.util.Scanner;
+
+public class SmoothSortGo {
+
+	public static void main(String[] args) {
+		
+		int i,n,k,c;
+        
+		Scanner sc = new Scanner(System.in);
+		Random ran = new Random();
+		
+		n = sc.nextInt();
+		int[] mas = new int[n];
+		
+		for(i=0;i<n;++i){
+			mas[i] = ran.nextInt(2);
+			System.out.print(mas[i]+" ");
+		}
+		
+		System.out.println();
+		
+		c = n;
+		while(c!=0){
+			
+			c=n-2;
+			
+			for(i = 0;i<n-2;++i){
+				
+				if(mas[i]>mas[i+1]){
+					k = mas[i];
+					mas[i] = mas[i+1];
+					mas[i+1] = k;
+			
+					if(mas[i+1]>mas[i+2]){
+						k = mas[i+1];
+						mas[i+1] = mas[i+2];
+						mas[i+2] = k;
+					}
+				} else{
+					
+					if(mas[i]>mas[i+2]){
+						k = mas[i];
+						mas[i] = mas[i+2];
+						mas[i+2] = k;
+					} else{
+						c=c-1;
+					}
+				}
+			
+			}
+			
+			/*for(i=0;i<n;++i){
+				System.out.print(mas[i]+" ");
+			}
+			System.out.println();*/
+		}
+		
+		for(i=0;i<n;++i){
+			System.out.print(mas[i]+" ");
+		}
+
+	}
+
+}
