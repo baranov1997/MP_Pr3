@@ -1,0 +1,47 @@
+package mp_praktika.pkg2;
+
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Random;
+public class MP_praktika2 {
+
+    public static void sort(int[] a) {
+        sort(a, 0, a.length - 1);
+        assert isSorted(a);}
+
+private static void sort(int[] a, int lo, int hi) { 
+        if (hi <= lo) return;
+        int lt = lo, gt = hi;
+        Comparable v = a[lo];
+        int i = lo;
+        while (i <= gt) {
+            if      (a[lt] > a[i]) exch(a, lt++, i++);
+            else if (a[lt] < a[i]) exch(a, i, gt--);
+            else    i++;}
+
+        sort(a, lo, lt-1);
+        sort(a, gt+1, hi);
+        assert isSorted(a);}
+        
+    private static void exch(int[] a, int i, int j) {
+        int swap = a[i];
+        a[i] = a[j];
+        a[j] = swap;}
+
+    private static boolean isSorted(int[] a) {
+        for (int i = 1; i <= a.length - 1; ++i)
+            if (a[i]<a[i-1]) return false;
+        return true;}
+    
+private static void show(int[] a) {
+System.out.println(Arrays.toString(a));}
+ 
+    public static void main (String[] args)
+    {  Scanner scan = new Scanner(System.in);
+       int n=scan.nextInt();
+       int[] a=new int[n];
+       Random random=new Random();
+       for(int y=0;y<=n-1;++y){a[y]=random.nextInt(10000);}
+        show(a);
+        sort(a);
+        show(a);}}
